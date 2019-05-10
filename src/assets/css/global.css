@@ -142,66 +142,6 @@ padding-right: 30px;
 
 
 
-
-
-.text-np {
-    width: 100%;
-    text-align: left;
-    padding: 1px;
-}
-
-.new-product {
-    text-align: left;
-    background: #ffff;
-    border-radius: 5px 5px 5px 5px;
-    margin-bottom: 100px;
-    margin: auto;
-    width: 80%;
-    float: left;
-    margin-left: 100px;
-    height: 80%;
-}
-
-.new-p{
-    width: 30%;
-    float: left;
-    height: 100%;
-    padding-left: 15px;
-    padding-top: 15px;
-}
-
-.plus-logo {
-    width: 50%;
-    background: #d5d9e0;
-    float: right;
-    margin: auto;
-    height: 100%;
-    position: relative;
-}
-
-.logo-size{
-    font-size: 64px;
-    color: #8D8D8D;
-    position: absolute;
-    top: 45%;
-    left: 45%;
-}
-
-.product-text{
-    color: #8D8D8D;
-    position: absolute;
-    top: 55%;
-    left: 26%;
-    font-family: 'Roboto', sans-serif;
-}
-
-.logo-class{
-    
-}
-
-
-
-
 /* Products */
 
 
