@@ -1,4 +1,6 @@
 import React from "react";
+import { NavLink } from "react-router-dom"; 
+import avatar from "../../assets/pictures/captain-beefheart-watercolor-portrait4-fabrizio-cassetta.jpg"
 
 import "./NewProduct.css"
 
@@ -7,13 +9,13 @@ export class NewProduct extends React.Component {
         return (
             <section id="new-product">
                 <div id="header">
-                    <div className="div-buttons">
-                        <button className="btn1"> <a className="green" href="./Products.html">PRODUCTS</a></button>
-                        <button className="btn2"><a className="black" href="./Expenses.html">EXPENSES</a></button>
+                        <div className="div-buttons">
+                        <button className="btn1"><NavLink className="green" to="/products"> PRODUCTS</NavLink></button>
+                        <button className="btn2"><NavLink className="black" to="/expenses">EXPENSES</NavLink></button>
                     </div>
 
                     <div className="div-pic">
-                        <img src="../../assets/pictures/captain-beefheart-watercolor-portrait4-fabrizio-cassetta.jpg" alt="avi" className="header-pic" />
+                        <img src={avatar} alt="avi" className="header-pic" />
                         <p className="header-name">Lazar Stepanoski</p>
                     </div>
                 </div>
@@ -42,16 +44,13 @@ export class NewProduct extends React.Component {
                         <div className="logo-className">
                             <span className="logo-size"><i className="fas fa-plus-circle"></i></span>
                             <div className="product-text">
-
                                 <h2>You are creating a new product</h2>
                             </div>
 
                         </div>
 
                     </div>
-
-
-
+                    
                 </div>
             </section>
         )
