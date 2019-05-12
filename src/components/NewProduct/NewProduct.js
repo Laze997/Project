@@ -1,27 +1,14 @@
 import React from "react";
-
 import "./NewProduct.css"
 
 export class NewProduct extends React.Component {
     render() {
         return (
             <section id="new-product">
-                <div id="header">
-                    <div className="div-buttons">
-                        <button className="btn1"> <a className="green" href="./Products.html">PRODUCTS</a></button>
-                        <button className="btn2"><a className="black" href="./Expenses.html">EXPENSES</a></button>
-                    </div>
-
-                    <div className="div-pic">
-                        <img src="../../assets/pictures/captain-beefheart-watercolor-portrait4-fabrizio-cassetta.jpg" alt="avi" className="header-pic" />
-                        <p className="header-name">Lazar Stepanoski</p>
-                    </div>
-                </div>
 
                 <div className="text-np">
                     <h2>New Product</h2>
                 </div>
-
 
                 <div className="new-product">
                     <div className="new-p">

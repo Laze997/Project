@@ -1,4 +1,5 @@
 import React from "react";
+import {NavLink} from "react-router-dom"
 
 import "./Register.css"
 
@@ -25,7 +26,7 @@ export class Register extends React.Component {
                             <input type="password" name="password" className="login-input" />
                             <button className="btn">REGISTER</button>
                         </form>
-                            <p className="text">Or if you have an account, <a className="link">Log In</a></p>
+                            <p className="text">Or if you have an account, <NavLink className="link" to="/"> Log In </NavLink></p>
         </div>
 
 
