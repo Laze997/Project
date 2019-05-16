@@ -2,12 +2,13 @@ import React from "react";
 
 
 import "./Products.css"
+import { Header } from "../Header/Header";
 
 export class Products extends React.Component {
     render() {
         return (
             <section id="products">
-
+                <Header/>
                 <div className="select">
                     <h2 className="products-text">Products</h2>
                     <select className="select-opt">

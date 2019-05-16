@@ -1,12 +1,13 @@
 import React from "react";
 import "./NewProduct.css"
+import { Header } from "../Header/Header";
 
 export class NewProduct extends React.Component {
     render() {
         return (
             <section id="new-prod">
 
-
+<Header/>
             
 
     <div className="text-np">

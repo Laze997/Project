@@ -12,7 +12,6 @@ export class Portal extends React.Component{
         return(
             <section id="portal">
                 
-                <Header/>
                 <Route path = "/newproduct" component = {NewProduct}/>
                 <Route path ="/products" component = {Products}/>
                 <Route path ="/expenses" component = {Expenses}/>

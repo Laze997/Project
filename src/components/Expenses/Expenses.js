@@ -3,12 +3,14 @@ import { NavLink } from "react-router-dom"
 import avatar from "../../assets/pictures/captain-beefheart-watercolor-portrait4-fabrizio-cassetta.jpg"
 
 import "./Expenses.css"
+import { Header } from "../Header/Header";
 
 export class Expenses extends React.Component {
     render() {
         return (
             <section id="expenses">
 
+                <Header/>
 
                 <div className="expense-text">
                     <h2>Expenses</h2>
