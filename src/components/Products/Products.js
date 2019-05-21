@@ -65,7 +65,7 @@ export class Products extends React.Component {
         </button>
 
                     <button className="calc-btn">
-                        NEW PRODUCT
+                    <NavLink to="/newproduct"> NEW PRODUCT </NavLink>
         </button>
                 </div>
 
