@@ -15,10 +15,9 @@ export class App extends React.Component{
     render(){
         return(
             <main id="app">
-                <Route exact path = "/" component = {Login}/>
-                <Route path = "/register" component = {Register}/>
+                <Route exact path = "/" component = {Login} />
+                <Route path = "/register" component = {Register} />
                 <Portal/>
-
             </main>
         )
     }

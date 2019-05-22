@@ -1,4 +1,4 @@
-#new-product{
+#new-prod{
     width: 100%;
     height: 100%;
 }
@@ -37,6 +37,7 @@
     margin: auto;
     height: 100%;
     position: relative;
+    padding-top: 750px;
 }
 
 .logo-size{
@@ -45,6 +46,15 @@
     position: absolute;
     top: 45%;
     left: 45%;
+}
+
+.plus{
+    background-image: url("../../assets/pictures/plus-circle.svg");
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-color: #d5d9e0;
+
 }
 
 .product-text{

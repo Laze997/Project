@@ -201,14 +201,20 @@ padding-right: 30px;
     border-spacing: 0;
 }
 
-
-.delete-btn{
+.trash{
     background-image: url("../pictures/trash-alt.svg");
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+}
+.edit{
+    background-image: url("../pictures/edit.svg");
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
 }
 
-.edit-btn{
-   background-image: url("../pictures/edit.svg")
-}
+
 
 .products-btns{
     cursor: pointer;
