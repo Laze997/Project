@@ -12,10 +12,16 @@ export class Portal extends React.Component{
         return(
             <section id="portal">
                 
+<<<<<<< HEAD
                 <Route exact path="/(newproduct|products|expenses)/" component={Header} />
                 <Route path = "/newproduct" component = {NewProduct} />
                 <Route path = "/products" component = {Products} />
                 <Route path = "/expenses" component = {Expenses} />
+=======
+                <Route path = "/newproduct" component = {NewProduct}/>
+                <Route path ="/products" component = {Products}/>
+                <Route path ="/expenses" component = {Expenses}/>
+>>>>>>> c32406782ced013ffa41627e29c91303ee9a3e4c
 
             </section>
         )
