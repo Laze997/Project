@@ -1,39 +1,98 @@
 import React from "react";
-import {NavLink} from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 import "./Register.css"
 
 export class Register extends React.Component {
-    render() {
-        return (
-            <section id="register">
-                <div className="center-div">
-                    <div className="login-container-margintop">
-                        <form className="login-form">
-                            <label className="login-label" for="firstname">First Name</label>
-                            <input type="text" name="firstname" className="login-input" />
-                            <label className="login-label" for="lastname">Last Name</label>
-                            <input type="text" name="lastname" className="login-input" />
-                            <label className="login-label" for="email">Email</label>
-                            <input type="email" name="email" className="login-input" />
-                            <label className="login-label" for="date">Date of birth</label>
-                            <input type="date" name="date" className="login-input"/>
-                            <label className="login-label" for="number">Telephone</label>
-                            <input type="number" name="number" className="login-input" />
-                            <label className="login-label" for="country">Country</label>
-                            <input type="text" name="country" className="login-input" />
-                            <label className="login-label" for="password">Password</label>
-                            <input type="password" name="password" className="login-input" />
-                            <button className="btn">REGISTER</button>
-                        </form>
-                            <p className="text">Or if you have an account, <NavLink className="link" to="/"> Log In </NavLink></p>
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      firstname: "",
+      lastname: "",
+      email: "",
+      date: "",
+      telephone: "",
+      country: "",
+      password: "",
+    }
+
+    this.HandleFieldsChange = this.HandleFieldsChange.bind(this);
+    this.RegisterUser = this.RegisterUser.bind(this);
+  }
+
+  RegisterUser() {
+    let data = {
+      "firstname": this.state.firstname,
+      "lastname": this.state.lastname,
+      "email": this.state.email,
+      "date": this.state.date,
+      "telephone": this.state.telephone,
+      "country": this.state.country,
+      "password": this.state.password,
+    }
+
+    var formData = new FormData();
+    formData.append('firstname', this.state.firstname);
+    formData.append('lastname', this.state.lastname);
+    formData.append('email', this.state.email);
+    formData.append('date', this.state.date);
+    formData.append('telephone', this.state.telephone);
+    formData.append('country', this.state.country);
+    formData.append('password', this.state.password);
+
+    fetch("http://localhost:3000/register", {
+      mode: "cors",
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data'
+      },
+      body: formData,
+    })
+      .then((res) => console.log("REGISTER RESULT: ", res))
+      .catch((err) => console.error(err));
+
+  }
+
+  HandleFieldsChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+
+
+  render() {
+    return (
+      <section id="register">
+        <div className="center-div">
+          <div className="login-container-margintop">
+            <div className="login-form">
+              <label className="login-label" htmlFor="firstname">First Name</label>
+              <input type="text" name="firstname" className="login-input" />
+              <label className="login-label" htmlFor="lastname">Last Name</label>
+              <input type="text" name="lastname" className="login-input" />
+              <label className="login-label" htmlFor="email">Email</label>
+              <input type="email" name="email" className="login-input" />
+              <label className="login-label" htmlFor="date">Date of birth</label>
+              <input type="date" name="date" className="login-input" />
+              <label className="login-label" htmlFor="telephone">Telephone</label>
+              <input type="number" name="telephone" className="login-input" />
+              <label className="login-label" htmlFor="country">Country</label>
+              <input type="text" name="country" className="login-input" />
+              <label className="login-label" htmlFor="password">Password</label>
+              <input type="password" name="password" className="login-input" />
+              <button onClick={this.RegisterUser} className="btn">REGISTER</button>
+            </div>
+            <p className="text">Or if you have an account, <NavLink className="link" to="/"> Log In </NavLink></p>
+          </div>
+
+
+
+
         </div>
-
-
-
-
-                    </div> 
-            </section>
-                )
-            }
+      </section>
+    )
+  }
 }

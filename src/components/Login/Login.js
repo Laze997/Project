@@ -10,9 +10,9 @@ export class Login extends React.Component {
                 <div className="center-div">
                     <div>
                         <form className="login-form">
-                            <label className="login-label" for="email">E-mail</label>
+                            <label className="login-label" htmlFor="email">E-mail</label>
                             <input type="email" name="email" className="login-input" />
-                            <label className="login-label" for="password">Password</label>
+                            <label className="login-label" htmlFor="password">Password</label>
                             <input type="password" name="password" className="login-input" />
                             <button className="btn">SIGN IN</button>
                         </form>

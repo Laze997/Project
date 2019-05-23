@@ -20,15 +20,15 @@ export class NewProduct extends React.Component {
 
 <div className="new-product">
         <div className="new-p">
-                <label className="login-label" for="productname">Product Name</label>
+                <label className="login-label" htmlFor="productname">Product Name</label>
                 <input  type="text" name="productname" className="login-input"/>
-                <label className="login-label" for="desc">Product Description</label> 
+                <label className="login-label" htmlFor="desc">Product Description</label> 
                 <input type="text" name="desc" className="login-input" /> 
-                <label className="login-label" for="type">Product Type</label>
+                <label className="login-label" htmlFor="type">Product Type</label>
                 <input type="text" name="type" className="login-input"/>
-                <label className="login-label" for="date">Purchase Date</label> 
+                <label className="login-label" htmlFor="date">Purchase Date</label> 
                 <input type="date" name="date" className="login-input" /> 
-                <label className="login-label" for="number">Product Price</label>
+                <label className="login-label" htmlFor="number">Product Price</label>
                 <input type="number" name="number" className="login-input"/>
                 <button className="btn" type="submit">CREATE PRODUCT</button>
         </div>

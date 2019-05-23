@@ -1,6 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom"
-import avatar from "../../assets/pictures/captain-beefheart-watercolor-portrait4-fabrizio-cassetta.jpg"
+
 
 import "./Expenses.css"
 import { Header } from "../Header/Header";
