@@ -3,12 +3,20 @@ import React from "react";
 import {NavLink} from "react-router-dom"
 import "./Products.css"
 import { Header } from "../Header/Header";
+<<<<<<< HEAD
+
+import { NavLink } from "react-router-dom"
+=======
+>>>>>>> c32406782ced013ffa41627e29c91303ee9a3e4c
 
 export class Products extends React.Component {
     render() {
         return (
             <section id="products">
+<<<<<<< HEAD
+=======
                 <Header/>
+>>>>>>> c32406782ced013ffa41627e29c91303ee9a3e4c
                 <div className="select">
                     <h2 className="products-text">Products</h2>
                     <select className="select-opt">
@@ -65,7 +73,11 @@ export class Products extends React.Component {
         </button>
 
                     <button className="calc-btn">
+<<<<<<< HEAD
+                    <NavLink className="nl-np" to="/newproduct"> NEW PRODUCT </NavLink>
+=======
                     <NavLink to="/newproduct"> NEW PRODUCT </NavLink>
+>>>>>>> c32406782ced013ffa41627e29c91303ee9a3e4c
         </button>
                 </div>
 

@@ -9,8 +9,11 @@ export class Expenses extends React.Component {
         return (
             <section id="expenses">
 
+<<<<<<< HEAD
+=======
                 <Header/>
 
+>>>>>>> c32406782ced013ffa41627e29c91303ee9a3e4c
                 <div className="expense-text">
                     <h2>Expenses</h2>
                 </div>

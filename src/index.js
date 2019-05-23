@@ -7,6 +7,6 @@ import "./assets/css/global.css"
 
 ReactDOM.render(
 <BrowserRouter>
-    <Route path = "/" component = {App}/>
+    <Route path= '/' component = {App} />
 </BrowserRouter>,
 document.getElementById("root"));
