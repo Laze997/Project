@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom"
 
 import "./Register.css"
+import Axios from "axios";
 
 export class Register extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ export class Register extends React.Component {
       "telephone": this.state.telephone,
       "country": this.state.country,
       "password": this.state.password,
+
     }
 
     var formData = new FormData();
@@ -41,19 +43,33 @@ export class Register extends React.Component {
     formData.append('country', this.state.country);
     formData.append('password', this.state.password);
 
-    fetch("http://localhost:3000/register", {
-      mode: "cors",
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'multipart/form-data'
-      },
-      body: formData,
-    })
-      .then((res) => console.log("REGISTER RESULT: ", res))
-      .catch((err) => console.error(err));
+    // fetch("http://localhost:3000/register", {
+    //   mode: "cors",
+    //   method: "POST",
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'multipart/form-data'
+    //   },
+    //   body: formData,
+    // })
+    //   .then((res) => console.log("REGISTER RESULT: ", res))
+    //   .catch((err) => console.error(err));
 
+    Axios.post("http://localhost:3000/register", {
+      firstname : this.state.firstname,
+      lastname : this.state.lastname,
+      email : this.state.email,
+      date : this.state.date,
+      telephone : this.state.telephone,
+      country : this.state.country,
+      password : this.state.password
+  })
+      .then((res) => console.log("REGISTER RESULT: ", res.formData))
+      .catch((err) => console.error(err));
   }
+
+
+
 
   HandleFieldsChange(e) {
     this.setState({
@@ -62,27 +78,27 @@ export class Register extends React.Component {
   }
 
 
-
   render() {
+    
     return (
       <section id="register">
         <div className="center-div">
           <div className="login-container-margintop">
             <div className="login-form">
               <label className="login-label" htmlFor="firstname">First Name</label>
-              <input type="text" name="firstname" className="login-input" />
+              <input onInput={this.HandleFieldsChange} type="text" name="firstname" className="login-input" />
               <label className="login-label" htmlFor="lastname">Last Name</label>
-              <input type="text" name="lastname" className="login-input" />
+              <input onInput={this.HandleFieldsChange} type="text" name="lastname" className="login-input" />
               <label className="login-label" htmlFor="email">Email</label>
-              <input type="email" name="email" className="login-input" />
+              <input onInput={this.HandleFieldsChange} type="email" name="email" className="login-input" />
               <label className="login-label" htmlFor="date">Date of birth</label>
-              <input type="date" name="date" className="login-input" />
+              <input onInput={this.HandleFieldsChange} type="date" name="date" className="login-input" />
               <label className="login-label" htmlFor="telephone">Telephone</label>
-              <input type="number" name="telephone" className="login-input" />
+              <input onInput={this.HandleFieldsChange} type="number" name="telephone" className="login-input" />
               <label className="login-label" htmlFor="country">Country</label>
-              <input type="text" name="country" className="login-input" />
+              <input onInput={this.HandleFieldsChange} type="text" name="country" className="login-input" />
               <label className="login-label" htmlFor="password">Password</label>
-              <input type="password" name="password" className="login-input" />
+              <input onInput={this.HandleFieldsChange} type="password" name="password" className="login-input" />
               <button onClick={this.RegisterUser} className="btn">REGISTER</button>
             </div>
             <p className="text">Or if you have an account, <NavLink className="link" to="/"> Log In </NavLink></p>

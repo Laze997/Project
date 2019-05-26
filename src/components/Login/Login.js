@@ -24,3 +24,24 @@ export class Login extends React.Component {
         )
     }
 }
+
+
+
+
+
+
+// Axios.post("http://localhost:3000/register",{
+//       firstname : this.state.firstname,
+//       lastname : this.state.lastname,
+//       email : this.state.email,
+//       date : this.state.date,
+//       telephone : this.state.telephone,
+//       country : this.state.country,
+//       password : this.state.password
+//     })
+//     .then((res => {
+//       const access_token = res.data.access_token;
+//       await localStorage.setItem("access_token", access_token);
+//       this.props.history.push("/")
+//     }))
+//   }

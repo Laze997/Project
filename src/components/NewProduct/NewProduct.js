@@ -6,11 +6,8 @@ export class NewProduct extends React.Component {
     render() {
         return (
             <section id="new-prod">
-<<<<<<< HEAD
-=======
 
 <Header/>
->>>>>>> c32406782ced013ffa41627e29c91303ee9a3e4c
             
 
     <div className="text-np">
