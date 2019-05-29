@@ -1,9 +1,48 @@
 import React from "react";
 import {NavLink} from "react-router-dom"
+import Axios from "axios"
 
 import "./Login.css"
 
 export class Login extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            email : "",
+            password : ""
+        }
+
+        this.HandleFieldsChange = this.HandleFieldsChange.bind(this);
+        this.logIn = this.logIn.bind(this)
+
+    }
+
+    logIn(){
+        let data = {
+            "email": this.props.email,
+            "password":this.props.password
+        }
+        var formData = new FormData();
+        formData.append('email', this.state.email);
+        formData.append('password', this.state.password);
+
+        Axios.post("http://localhost:3000/", {
+            email: this.props.email,
+            password: this.props.password
+        })
+        .then((res) => console.log("LOGIN RESULT: ", res.formData))
+        .catch((err) => console.error(err));
+        this.props.history.push("/products")
+    }
+    
+
+    HandleFieldsChange(e) {
+        this.setState({
+          [e.target.name]: e.target.value
+        })
+      }
+
     render() {
         return (
             <section id="login">
@@ -11,10 +50,10 @@ export class Login extends React.Component {
                     <div>
                         <form className="login-form">
                             <label className="login-label" htmlFor="email">E-mail</label>
-                            <input type="email" name="email" className="login-input" />
+                            <input onInput={this.HandleFieldsChange} type="email" name="email" className="login-input" />
                             <label className="login-label" htmlFor="password">Password</label>
-                            <input type="password" name="password" className="login-input" />
-                            <button className="btn">SIGN IN</button>
+                            <input onInput={this.HandleFieldsChange} type="password" name="password" className="login-input" />
+                            <button onClick={this.logIn} className="btn">SIGN IN</button>
                         </form>
                         <p className="text">Or if you don't have an account,<NavLink className="link" to="/register"> Register</NavLink></p>
 
@@ -27,21 +66,3 @@ export class Login extends React.Component {
 
 
 
-
-
-
-// Axios.post("http://localhost:3000/register",{
-//       firstname : this.state.firstname,
-//       lastname : this.state.lastname,
-//       email : this.state.email,
-//       date : this.state.date,
-//       telephone : this.state.telephone,
-//       country : this.state.country,
-//       password : this.state.password
-//     })
-//     .then((res => {
-//       const access_token = res.data.access_token;
-//       await localStorage.setItem("access_token", access_token);
-//       this.props.history.push("/")
-//     }))
-//   }

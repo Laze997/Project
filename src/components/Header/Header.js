@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom"
 export class Header extends React.Component {
     render() {
         return (
-            <section class="header">
+            <section className="header">
                 <div id="header">
                     <div className="div-buttons">
                         <button className="btn1">

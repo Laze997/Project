@@ -31,7 +31,6 @@ export class Register extends React.Component {
       "telephone": this.state.telephone,
       "country": this.state.country,
       "password": this.state.password,
-
     }
 
     var formData = new FormData();
@@ -42,18 +41,6 @@ export class Register extends React.Component {
     formData.append('telephone', this.state.telephone);
     formData.append('country', this.state.country);
     formData.append('password', this.state.password);
-
-    // fetch("http://localhost:3000/register", {
-    //   mode: "cors",
-    //   method: "POST",
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'multipart/form-data'
-    //   },
-    //   body: formData,
-    // })
-    //   .then((res) => console.log("REGISTER RESULT: ", res))
-    //   .catch((err) => console.error(err));
 
     Axios.post("http://localhost:3000/register", {
       firstname : this.state.firstname,
@@ -67,9 +54,6 @@ export class Register extends React.Component {
       .then((res) => console.log("REGISTER RESULT: ", res.formData))
       .catch((err) => console.error(err));
   }
-
-
-
 
   HandleFieldsChange(e) {
     this.setState({

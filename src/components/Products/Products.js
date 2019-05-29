@@ -1,14 +1,14 @@
 import React from "react";
 
-import {NavLink} from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import "./Products.css"
-import { Header } from "../Header/Header";
+
 
 export class Products extends React.Component {
     render() {
         return (
             <section id="products">
-                <Header/>
+
                 <div className="select">
                     <h2 className="products-text">Products</h2>
                     <select className="select-opt">
@@ -24,36 +24,39 @@ export class Products extends React.Component {
 
                 <div className="table-products">
                     <table className="table">
-                        <tr className="categories">
-                            <th>Product Name</th>
-                            <th>Product Type</th>
-                            <th>Product Description</th>
-                            <th>Purchase Date</th>
-                            <th>Product Price</th>
-                            <th>Customize</th>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Product Type</th>
+                                <th>Product Description</th>
+                                <th>Purchase Date</th>
+                                <th>Product Price</th>
+                                <th>Customize</th>
+                            </tr>
 
-                        <tr className="products">
-                            <td>Coca Cola</td>
-                            <td>Drink</td>
-                            <td>Carbonated Drink</td>
-                            <td>29/4/2019</td>
-                            <td>75</td>
-                            <td><button className="th-btn trash"></button>
-                                <button className="th-btn edit"></button></td>
 
-                        </tr>
+                            <tr className="products">
+                                <td>Coca Cola</td>
+                                <td>Drink</td>
+                                <td>Carbonated Drink</td>
+                                <td>29/4/2019</td>
+                                <td>75</td>
+                                <td><button className="th-btn trash"></button>
+                                    <button className="th-btn edit"></button></td>
 
-                        <tr className="products">
-                            <td>Coca Cola</td>
-                            <td>Drink</td>
-                            <td>Carbonated Drink</td>
-                            <td>29/4/2019</td>
-                            <td>75</td>
-                            <td><button className="th-btn trash"></button>
-                                <button className="th-btn edit"></button></td>
+                            </tr>
 
-                        </tr>
+                            <tr className="products">
+                                <td>Coca Cola</td>
+                                <td>Drink</td>
+                                <td>Carbonated Drink</td>
+                                <td>29/4/2019</td>
+                                <td>75</td>
+                                <td><button className="th-btn trash"></button>
+                                    <button className="th-btn edit"></button></td>
+
+                            </tr>
+                        </tbody>
                     </table>
 
 
@@ -65,8 +68,8 @@ export class Products extends React.Component {
         </button>
 
                     <button className="calc-btn">
-                    <NavLink to="/newproduct"> NEW PRODUCT </NavLink>
-        </button>
+                        <NavLink className="nav-btn" to="/newproduct"> NEW PRODUCT </NavLink>
+                    </button>
                 </div>
 
 

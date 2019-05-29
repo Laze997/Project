@@ -2,14 +2,12 @@ import React from "react";
 
 
 import "./Expenses.css"
-import { Header } from "../Header/Header";
+
 
 export class Expenses extends React.Component {
     render() {
         return (
             <section id="expenses">
-
-                <Header/>
 
                 <div className="expense-text">
                     <h2>Expenses</h2>
@@ -44,34 +42,36 @@ export class Expenses extends React.Component {
 
 
 
-                <div className="table-div">
+                <div className="table-products">
                     <table className="table">
-                        <tr className="categories">
-                            <th>Product Name</th>
-                            <th>Product Type</th>
-                            <th>Product Description</th>
-                            <th>Purchase Date</th>
-                            <th>Product Price</th>
+                        <tbody>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Product Type</th>
+                                <th>Product Description</th>
+                                <th>Purchase Date</th>
+                                <th>Product Price</th>
+                                
+                            </tr>
 
-                        </tr>
 
-                        <tr className="products">
-                            <td>Coca Cola</td>
-                            <td>Drink</td>
-                            <td>Carbonated Drink</td>
-                            <td>29/4/2019</td>
-                            <td>75</td>
+                            <tr className="products">
+                                <td>Coca Cola</td>
+                                <td>Drink</td>
+                                <td>Carbonated Drink</td>
+                                <td>29/4/2019</td>
+                                <td>75</td>
 
-                        </tr>
+                            </tr>
 
-                        <tr className="products">
-                            <td>Fanta</td>
-                            <td>Drink</td>
-                            <td>Carbonated Drink</td>
-                            <td>29/4/2019</td>
-                            <td>75</td>
-
-                        </tr>
+                            <tr className="products">
+                                <td>Coca Cola</td>
+                                <td>Drink</td>
+                                <td>Carbonated Drink</td>
+                                <td>29/4/2019</td>
+                                <td>75</td>
+                            </tr>
+                        </tbody>
                     </table>
 
 
