@@ -11,7 +11,7 @@ export class NewProduct extends React.Component {
             desc: "",
             type: "",
             date: "",
-            number: ""
+            price: ""
         }
         this.newProduct = this.newProduct.bind(this);
         this.handleFieldsChange = this.handleFieldsChange.bind(this)
@@ -22,7 +22,7 @@ export class NewProduct extends React.Component {
             "desc": this.state.desc,
             "type": this.state.type,
             "date": this.state.date,
-            "number": this.state.number
+            "price": this.state.price
         }
 
         var formData = new FormData();
@@ -30,14 +30,14 @@ export class NewProduct extends React.Component {
         formData.append('desc', this.state.desc);
         formData.append('type', this.state.type);
         formData.append('date', this.state.date);
-        formData.append('number', this.state.number);
+        formData.append('number', this.state.price);
 
         Axios.post("http://localhost:3000/newproduct", {
             productname : this.state.productname,
             desc : this.state.desc,
             type : this.state.type,
             date : this.state.date,
-            number : this.state.number
+            price : this.state.price
         })
         .then((res) => console.log("NEWPRODUCT RESULT: ", res.formData))
         .catch((err) => console.error(err));
@@ -74,8 +74,8 @@ export class NewProduct extends React.Component {
                         <input onInput={this.handleFieldsChange} type="text" name="type" className="login-input" />
                         <label className="login-label" htmlFor="date">Purchase Date</label>
                         <input onInput={this.handleFieldsChange} type="date" name="date" className="login-input" />
-                        <label className="login-label" htmlFor="number">Product Price</label>
-                        <input onInput={this.handleFieldsChange} type="number" name="number" className="login-input" />
+                        <label className="login-label" htmlFor="price">Product Price</label>
+                        <input onInput={this.handleFieldsChange} type="number" name="price" className="login-input" />
                         <button onClick={this.newProduct} className="btn" type="submit">CREATE PRODUCT</button>
                     </div>
                     <div className="plus-logo">

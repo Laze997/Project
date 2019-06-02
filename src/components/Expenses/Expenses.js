@@ -5,6 +5,45 @@ import "./Expenses.css"
 
 
 export class Expenses extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            products: [
+            ],
+            err: {
+                show: false,
+                errorMsg: ""
+            }
+
+        }
+        this.fetchProducts = this.fetchProducts.bind(this)
+
+    }
+
+    componentDidMount() {
+        this.fetchProducts();
+    }
+
+    fetchProducts() {
+        fetch("http://localhost:3000/expenses")
+            .then(res => { return res.json() })
+            .then(res => { 
+                this.setState({ products: res });
+            })
+            .catch(err => {
+                this.setState(state => {
+                    return {
+                        ...state,
+                        show: true,
+                        errorMsg: err
+                    }
+                })
+            })
+
+    }
+    
     render() {
         return (
             <section id="expenses">
@@ -55,22 +94,20 @@ export class Expenses extends React.Component {
                             </tr>
 
 
-                            <tr className="products">
-                                <td>Coca Cola</td>
-                                <td>Drink</td>
-                                <td>Carbonated Drink</td>
-                                <td>29/4/2019</td>
-                                <td>75</td>
+                            {
+                                    this.state.products.map((product) => {
+                                        return (
+                                            <tr key={product._id} className="products">
+                                                <td>{product.productname}</td>
+                                                <td>{product.desc}</td>
+                                                <td>{product.type}</td>
+                                                <td>{product.date}</td>
+                                                <td>{product.price}</td>
+                                        </tr>
+                                        )
+                                    })
 
-                            </tr>
-
-                            <tr className="products">
-                                <td>Coca Cola</td>
-                                <td>Drink</td>
-                                <td>Carbonated Drink</td>
-                                <td>29/4/2019</td>
-                                <td>75</td>
-                            </tr>
+                            }
                         </tbody>
                     </table>
 
