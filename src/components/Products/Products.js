@@ -18,8 +18,6 @@ export class Products extends React.Component {
             },
 
             isHidden: true,
-            visible: false,
-            selectedProduct: {}
 
         }
         this.fetchProducts = this.fetchProducts.bind(this)
