@@ -18,16 +18,19 @@ export class Products extends React.Component {
             },
 
             isHidden: true,
+            selectedId: {}
 
         }
         this.fetchProducts = this.fetchProducts.bind(this)
         this.toggleAlert = this.toggleAlert.bind(this)
         this.deleteProduct = this.deleteProduct.bind(this)
+        this.getProducts = this.getProducts.bind(this)
     }
 
     componentDidMount() {
         this.fetchProducts();
         this.deleteProduct();
+        this.getProducts()
     }
 
     toggleAlert() {
@@ -57,11 +60,39 @@ export class Products extends React.Component {
     deleteProduct = product => () => {
 
         Axios.delete('http://localhost:3000/products/' + product._id)
-            .then((res) => {
-                this.setState({ product: res.data })
-            })
-    }
+        .then(
+            (res) => {
+                this.setState({ products: res.data })
+            }
+        ).catch(err => {
+            console.log(err)
+        })
 
+    }
+    
+
+
+    getProducts() {
+        return this.state.products.map(product => (
+            <tr className="products" key={product._id}>
+                <td>{product.productname}</td>
+                <td>{product.desc}</td>
+                <td>{product.type}</td>
+                <td>{product.date}</td>
+                <td>{product.price}</td>
+                <td><button className="th-btn trash" onClick={()=>{
+                    this.setState({
+                        isHidden:false,
+                        toggleAlert: product
+                    })
+                }}></button>
+                    <button className="th-btn edit">
+                        {/* <NavLink to={"http://localhost:3000/edit/"}/> */}
+                    </button>
+                </td>
+            </tr>
+        ))
+    }
 
 
 
@@ -98,23 +129,25 @@ export class Products extends React.Component {
                             </tr>
 
                             {
-                                this.state.products.map((product) => {
-                                    return (
-                                        <tr key={product._id} className="products">
-                                            <td>{product.productname}</td>
-                                            <td>{product.desc}</td>
-                                            <td>{product.type}</td>
-                                            <td>{product.date}</td>
-                                            <td>{product.price}</td>
-                                            <td><button onClick={this.toggleAlert} className="th-btn trash"></button>
-                                                <button className="th-btn edit">
-                                                    {/* <NavLink to={"http://localhost:3000/edit/"}/> */}
-                                                </button>
-                                            </td>
 
-                                        </tr>
-                                    )
-                                })
+                                this.getProducts()
+                                // this.state.products.map((product) => {
+                                //     return (
+                                //         <tr key={product._id} className="products">
+                                //             <td>{product.productname}</td>
+                                //             <td>{product.desc}</td>
+                                //             <td>{product.type}</td>
+                                //             <td>{product.date}</td>
+                                //             <td>{product.price}</td>
+                                //             <td><button onClick={this.toggleAlert} className="th-btn trash"></button>
+                                //                 <button className="th-btn edit">
+                                //                     {/* <NavLink to={"http://localhost:3000/edit/"}/> */}
+                                //                 </button>
+                                //             </td>
+
+                                //         </tr>
+                                //     )
+                                // })
 
                             }
 
@@ -147,7 +180,7 @@ export class Products extends React.Component {
                                 </div>
                                 <div className="alert-btns">
                                     <button onClick={this.toggleAlert} className="cancel-btn">CANCEL</button>
-                                    <button onClick={this.deleteProduct} className="delete-btn">DELETE</button>
+                                    <button onClick={this.deleteProduct(this.state.selectedId)} className="delete-btn">DELETE</button>
                                 </div>
 
                             </div>
