@@ -43,16 +43,18 @@ export class Register extends React.Component {
     formData.append('password', this.state.password);
 
     Axios.post("http://localhost:3000/register", {
-      firstname : this.state.firstname,
-      lastname : this.state.lastname,
-      email : this.state.email,
-      date : this.state.date,
-      telephone : this.state.telephone,
-      country : this.state.country,
-      password : this.state.password
-  })
-      .then((res) => console.log("REGISTER RESULT: ", res.formData))
-      .catch((err) => console.error(err));
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      email: this.state.email,
+      date: this.state.date,
+      telephone: this.state.telephone,
+      country: this.state.country,
+      password: this.state.password
+    }).then( res => {
+      this.props.history.push('/')
+    })
+      .catch(err => console.log(err))
+
   }
 
   HandleFieldsChange(e) {
@@ -63,7 +65,7 @@ export class Register extends React.Component {
 
 
   render() {
-    
+
     return (
       <section id="register">
         <div className="center-div">

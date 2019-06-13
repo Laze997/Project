@@ -1,8 +1,8 @@
 import React from "react";
-import "./NewProduct.css"
+import "../NewProduct/NewProduct.css"
 import Axios from 'axios';
 
-export class Edit extends React.Component {
+export class EditProduct extends React.Component {
     constructor(props){
         super(props);
         
@@ -11,12 +11,50 @@ export class Edit extends React.Component {
             desc: "",
             type: "",
             date: "",
-            price: ""
+            price: "",
+            product: this.props.location.state.product
         }
+
+        this.editProduct = this.editProduct.bind(this);
+        this.hanldeField = this.hanldeField.bind(this)
     }
+
+    // editProduct(){
+    //     Axios.patch("http://localhost:3000/edit/" + this.state.product._id, this.state.product)
+    //     .then(res => {
+    //         this.props.history.push("/products")
+    //     })
+    //     .catch(err => {
+    //         console.log(err)
+    //     })
+    // }
+    
+    editProduct(){
+        // const access_token = localStorage.getItem('access_token')
+        Axios.patch('http://localhost:3000/editproduct/' + this.state.product._id , this.state.product, {
+            // headers: {
+            //     access_token
+            // }
+        })
+        .then( res => {
+            
+            this.props.history.push('/products')
+        })
+            .catch(err => console.log(err))
+
+    }
+
+    hanldeField(e) {
+        let newEditProduct = {...this.state.product, [e.target.name]: e.target.value };
+        this.setState({
+            product: newEditProduct
+        })
+    }
+
     
 
     render() {
+        var product = this.state.product
         return (
             <section id="new-prod">
 
@@ -28,16 +66,16 @@ export class Edit extends React.Component {
                 <div className="new-product">
                     <div className="new-p">
                         <label className="login-label" htmlFor="productname">Product Name</label>
-                        <input  type="text" name="productname" className="login-input" />
+                        <input value={product.productname} onChange={this.hanldeField}  type="text" name="productname" className="login-input" />
                         <label className="login-label" htmlFor="desc">Product Description</label>
-                        <input  type="text" name="desc" className="login-input" />
+                        <input value={product.desc} onChange={this.hanldeField}  type="text" name="desc" className="login-input" />
                         <label className="login-label" htmlFor="type">Product Type</label>
-                        <input  type="text" name="type" className="login-input" />
+                        <input value={product.type} onChange={this.hanldeField}  type="text" name="type" className="login-input" />
                         <label className="login-label" htmlFor="date">Purchase Date</label>
-                        <input  type="date" name="date" className="login-input" />
+                        <input value={product.date} onChange={this.hanldeField}  type="date" name="date" className="login-input" />
                         <label className="login-label" htmlFor="price">Product Price</label>
-                        <input  type="number" name="price" className="login-input" />
-                        <button className="btn" type="submit">CREATE PRODUCT</button>
+                        <input value={product.price} onChange={this.hanldeField} type="number" name="price" className="login-input" />
+                        <button onClick={this.editProduct} className="btn" type="submit">EDIT PRODUCT</button>
                     </div>
                     <div className="plus-logo">
                         <span className="logo-size plus"></span>

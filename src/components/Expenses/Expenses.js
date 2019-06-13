@@ -15,10 +15,15 @@ export class Expenses extends React.Component {
             err: {
                 show: false,
                 errorMsg: ""
-            }
+            },
+            total: "",
+            selected: "monthly" 
 
         }
         this.fetchProducts = this.fetchProducts.bind(this)
+        this.totalSum = this.totalSum.bind(this)
+        this.setYearly = this.setYearly.bind(this)
+        this.setMonthly = this.setMonthly.bind(this)
 
     }
 
@@ -43,6 +48,27 @@ export class Expenses extends React.Component {
             })
 
     }
+
+    setYearly(){
+        this.setState({
+            selected: "yearly"
+        })
+    }
+
+    setMonthly(){
+        this.setState({
+            selected: "monthly"
+        })
+    }
+
+
+    totalSum(){
+        var totalPrice = this.state.products.reduce(function (prev, cur) {
+            return prev + cur.price;
+        }, 0);
+
+        return totalPrice
+    }
     
     render() {
         return (
@@ -54,8 +80,8 @@ export class Expenses extends React.Component {
 
                 <div className="expense-select">
                     <div className="exp-btns">
-                        <button className="exp-btn1">MONTHLY</button>
-                        <button className="exp-btn2">YEARLY</button>
+                        <button  className={(this.state.selected === "monthly") ? "exp-btn1" : "exp-btn2"} onClick={this.setMonthly} >MONTHLY</button>
+                        <button className={(this.state.selected === "yearly") ? "exp-btn1" : "exp-btn2"} onClick={this.setYearly} >YEARLY</button>
                     </div>
                     <div className="exp-div">
                         <p className="exp-filter">Choose a Month:</p>
@@ -115,7 +141,7 @@ export class Expenses extends React.Component {
                 </div>
 
                 <div className="result">
-                    <h3 className="res-text">Total spend: 150 den</h3>
+                    <h3 className="res-text">Total spend: {this.totalSum()} denari</h3>
                 </div>
             </section>
         )

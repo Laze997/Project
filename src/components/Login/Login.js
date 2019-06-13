@@ -18,23 +18,28 @@ export class Login extends React.Component {
 
     }
 
-    logIn(){
+
+    logIn() {
         let data = {
-            "email": this.props.email,
-            "password":this.props.password
+          "email": this.state.email,
+          "password": this.state.password
         }
+    
         var formData = new FormData();
         formData.append('email', this.state.email);
         formData.append('password', this.state.password);
-
+    
         Axios.post("http://localhost:3000/", {
-            email: this.props.email,
-            password: this.props.password
+          email: this.state.email,
+          password: this.state.password
+        },
+        { headers: {"Authorization" : "Bearer" + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxhemFyc3RlcDEyM0BnbWFpbC5jb20iLCJpYXQiOjE1NjA0MzQ0MTV9.gCFwq2q4waQHoRyk7jLZM9Pk7VT5XYxySBReBKXZpo0"} }
+       ).then( res => {
+          this.props.history.push('/products')
         })
-        .then((res) => console.log("LOGIN RESULT: ", res.formData))
-        .catch((err) => console.error(err));
-        this.props.history.push("/products")
-    }
+          .catch(err => console.log(err))
+    
+      }
     
 
     HandleFieldsChange(e) {
