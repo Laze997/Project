@@ -16,38 +16,55 @@ export class NewProduct extends React.Component {
         this.newProduct = this.newProduct.bind(this);
         this.handleFieldsChange = this.handleFieldsChange.bind(this)
     }
-    newProduct(){
-        let data = {
-            "productname": this.state.productname,
-            "desc": this.state.desc,
-            "type": this.state.type,
-            "date": this.state.date,
-            "price": this.state.price
-        }
+    
+    newProduct() {
+        var access_token = localStorage.getItem("access_token")
 
-        var formData = new FormData();
-        formData.append('productname', this.state.productname);
-        formData.append('desc', this.state.desc);
-        formData.append('type', this.state.type);
-        formData.append('date', this.state.date);
-        formData.append('number', this.state.price);
-
-        Axios.post("http://localhost:3000/newproduct", {
-            productname : this.state.productname,
-            desc : this.state.desc,
-            type : this.state.type,
-            date : this.state.date,
-            price : this.state.price
+        let information = {
+          productname: this.state.productname,
+          productdescription: this.state.productdescription,
+          type: this.state.type,
+          date: this.state.date,
+          price: this.state.price
+        };
+    
+        fetch("http://localhost:3000/newproduct", {
+          method: "post",
+          headers: {
+            access_token
+          },
+          body: JSON.stringify(information)
         })
-        .then((res) => console.log("NEWPRODUCT RESULT: ", res.formData))
-        .catch((err) => console.error(err));
-    }
+          .then(res => console.log("PRODUCT RESULT: ", res))
+          .catch(err => console.error(err));
+      }
+
+      componentDidMount(){
+          this.newProduct()
+      }
 
     handleFieldsChange(e){
         this.setState({
             [e.target.name]: e.target.value
         })
     }
+
+    // newProduct() {
+    //     const access_token = localStorage.getItem('access_token')
+
+    //     Axios.post('http://localhost:3000/newproduct', this.state, {
+    //         // headers: {
+    //         //     access_token
+    //         // }
+    //     })
+    //     .then(res => {
+    //         access_token()
+    //         this.props.history.push('/products')
+    //     })
+    //         .catch(err => console.log(err))
+
+    // }
+
 
 
 

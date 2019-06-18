@@ -23,39 +23,15 @@ export class Register extends React.Component {
   }
 
   RegisterUser() {
-    let data = {
-      "firstname": this.state.firstname,
-      "lastname": this.state.lastname,
-      "email": this.state.email,
-      "date": this.state.date,
-      "telephone": this.state.telephone,
-      "country": this.state.country,
-      "password": this.state.password,
-    }
-
-    var formData = new FormData();
-    formData.append('firstname', this.state.firstname);
-    formData.append('lastname', this.state.lastname);
-    formData.append('email', this.state.email);
-    formData.append('date', this.state.date);
-    formData.append('telephone', this.state.telephone);
-    formData.append('country', this.state.country);
-    formData.append('password', this.state.password);
-
-    Axios.post("http://localhost:3000/register", {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      email: this.state.email,
-      date: this.state.date,
-      telephone: this.state.telephone,
-      country: this.state.country,
-      password: this.state.password
-    }).then( res => {
-      this.props.history.push('/')
+    Axios.post('http://localhost:3000/register', this.state)
+    .then(res => {
+        const access_token = res.data.token;
+        localStorage.setItem("access_token", access_token);
+        this.props.history.push('/')
     })
-      .catch(err => console.log(err))
+        .catch(err => console.log(err))
 
-  }
+}
 
   HandleFieldsChange(e) {
     this.setState({

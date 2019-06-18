@@ -19,22 +19,13 @@ export class EditProduct extends React.Component {
         this.hanldeField = this.hanldeField.bind(this)
     }
 
-    // editProduct(){
-    //     Axios.patch("http://localhost:3000/edit/" + this.state.product._id, this.state.product)
-    //     .then(res => {
-    //         this.props.history.push("/products")
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //     })
-    // }
     
     editProduct(){
-        // const access_token = localStorage.getItem('access_token')
-        Axios.patch('http://localhost:3000/editproduct/' + this.state.product._id , this.state.product, {
-            // headers: {
-            //     access_token
-            // }
+        const access_token = localStorage.getItem('access_token')
+        Axios.patch('http://localhost:3000/edit/' + this.state.product._id , this.state.product, {
+            headers: {
+                access_token
+            }
         })
         .then( res => {
             

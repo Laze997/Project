@@ -21,15 +21,11 @@ export class Products extends React.Component {
 
 
         }
-        this.fetchProducts = this.fetchProducts.bind(this)
+
         this.toggleAlert = this.toggleAlert.bind(this)
         this.deleteProduct = this.deleteProduct.bind(this)
         this.toEditProduct = this.toEditProduct.bind(this)
         this.productFilter = this.productFilter.bind(this)
-    }
-
-    componentDidMount() {
-        this.fetchProducts();
     }
 
     toggleAlert(id) {
@@ -43,39 +39,58 @@ export class Products extends React.Component {
             })
     }
 
+ componentDidMount() {
+ this.fetchProducts()
+    }
+
+    fetchProducts() {
+        var access_token = localStorage.getItem("access_token")
+
+        Axios.get("http://localhost:3000/products", {
+            headers: {
+                Authorization: `Bearer ${access_token}`
+            }
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(res => { 
+            this.setState({
+                products : res.data
+            })
+
+          })
+          .catch(err => {
+            this.setState(state => {
+              return {
+                error: {
+                  ...state.error,
+                  show: true,
+                  errorMsg: err
+                }
+              };
+            });
+          });
+        console.log(this.state.products)
+      }
+
+
+
+
     toEditProduct = (product) => () => {
         this.props.history.push('/editproduct', { product });
     }
 
-    fetchProducts() { 
-        const access_token = localStorage.getItem("access_token")
-
-        fetch("http://localhost:3000/products", {
-            headers : {
-                access_token
-            }
-        })
-            .then(res => { return res.json() })
-            .then(res => {
-                this.setState({ products: res });
-            })
-            .catch(err => {
-                this.setState(state => {
-                    return {
-                        ...state,
-                        show: true,
-                        errorMsg: err
-                    }
-                })
-            })
-
-    }
-
     deleteProduct(id) {
+        var access_token = localStorage.getItem("access_token")
         let data = {
             "id": id,
         }
-        Axios.delete("http://localhost:3000/products/" + id, data)
+        Axios.delete("http://localhost:3000/products/" + id, data, {
+            headers: {
+                access_token
+            }
+        })
             .then((res) => console.log("DELETE RESULT: ", res.data))
             .then(res => {
                 this.setState({
@@ -113,7 +128,7 @@ export class Products extends React.Component {
             })
         }
 
-        
+
         if (type === "latestPurchase") {
             this.setState({
                 products: products.sort((x, y) => {

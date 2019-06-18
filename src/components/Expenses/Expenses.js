@@ -32,22 +32,30 @@ export class Expenses extends React.Component {
     }
 
     fetchProducts() {
-        fetch("http://localhost:3000/expenses")
-            .then(res => { return res.json() })
-            .then(res => { 
-                this.setState({ products: res });
-            })
-            .catch(err => {
-                this.setState(state => {
-                    return {
-                        ...state,
-                        show: true,
-                        errorMsg: err
-                    }
-                })
-            })
+        var access_token = localStorage.getItem("access_token")
 
-    }
+        fetch("http://localhost:3000/expenses", {
+            headers: access_token
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(res => this.setState({
+              products : res.body
+          }))
+          .catch(err => {
+            this.setState(state => {
+              return {
+                error: {
+                  ...state.error,
+                  show: true,
+                  errorMsg: err
+                }
+              };
+            });
+          });
+      }
+      
 
     setYearly(){
         this.setState({
