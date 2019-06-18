@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom"
 import "./Products.css"
 import Axios from "axios";
 
+
 export class Products extends React.Component {
 
     constructor(props) {
@@ -45,21 +46,24 @@ export class Products extends React.Component {
 
     fetchProducts() {
         var access_token = localStorage.getItem("access_token")
+        if(!access_token){
+            this.props.history.push("/")
+        }
 
-        Axios.get("http://localhost:3000/products", {
-            headers: {
-                Authorization: `Bearer ${access_token}`
-            }
+        fetch("http://localhost:3000/products",  {
+            method: "GET",
+                headers:{
+                    'Authorization': `Bearer ${access_token}`,
+                    'Access-Control-Allow-Origin': '*',
+                    'mode': 'no-cors'
+                  }
         })
           .then(res => {
             return res.json();
           })
-          .then(res => { 
-            this.setState({
-                products : res.data
-            })
-
-          })
+          .then(res => this.setState({
+              products : res
+          }))
           .catch(err => {
             this.setState(state => {
               return {
@@ -71,8 +75,11 @@ export class Products extends React.Component {
               };
             });
           });
-        console.log(this.state.products)
-      }
+          
+        }
+
+
+
 
 
 
@@ -83,6 +90,9 @@ export class Products extends React.Component {
 
     deleteProduct(id) {
         var access_token = localStorage.getItem("access_token")
+        if(!access_token){
+            this.props.history.push("/")
+        }
         let data = {
             "id": id,
         }
@@ -99,6 +109,9 @@ export class Products extends React.Component {
             })
             .catch((err) => console.error(err));
     }
+
+
+    
 
     productFilter(e) {
         var type = e.target.value;

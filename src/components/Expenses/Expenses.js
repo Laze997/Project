@@ -33,15 +33,23 @@ export class Expenses extends React.Component {
 
     fetchProducts() {
         var access_token = localStorage.getItem("access_token")
+        if(!access_token){
+            this.props.history.push("/")
+        }
 
-        fetch("http://localhost:3000/expenses", {
-            headers: access_token
+        fetch("http://localhost:3000/expenses",  {
+            method: "GET",
+                headers:{
+                    'Authorization': `Bearer ${access_token}`,
+                    'Access-Control-Allow-Origin': '*',
+                    'mode': 'no-cors'
+                  }
         })
           .then(res => {
             return res.json();
           })
           .then(res => this.setState({
-              products : res.body
+              products : res
           }))
           .catch(err => {
             this.setState(state => {
@@ -54,7 +62,8 @@ export class Expenses extends React.Component {
               };
             });
           });
-      }
+          
+        }
       
 
     setYearly(){
