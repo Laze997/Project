@@ -3,9 +3,9 @@ import "./NewProduct.css"
 import Axios from 'axios';
 
 export class NewProduct extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        
+
         this.state = {
             productname: "",
             desc: "",
@@ -16,34 +16,30 @@ export class NewProduct extends React.Component {
         this.newProduct = this.newProduct.bind(this);
         this.handleFieldsChange = this.handleFieldsChange.bind(this)
     }
-    
+
+
     newProduct() {
-        var access_token = localStorage.getItem("access_token")
+        var access_token = localStorage.getItem("access_token", access_token);
+        
+        Axios.post('http://localhost:3000/newproduct', this.state, {
+        headers:{
+            'Authorization': `Bearer ${access_token}`,
+            'Access-Control-Allow-Origin': '*',
+            'mode': 'no-cors'
+          }
+        }   
+        )
+            .then( res => {
+                
+                console.log("Product Res:", res);
+                this.props.history.push("/products")
+            }
+            )
+            .catch(err => console.log(err))
+    }
 
-        let information = {
-          productname: this.state.productname,
-          productdescription: this.state.productdescription,
-          type: this.state.type,
-          date: this.state.date,
-          price: this.state.price
-        };
-    
-        fetch("http://localhost:3000/newproduct", {
-          method: "post",
-          headers: {
-            access_token
-          },
-          body: JSON.stringify(information)
-        })
-          .then(res => console.log("PRODUCT RESULT: ", res))
-          .catch(err => console.error(err));
-      }
 
-      componentDidMount(){
-          this.newProduct()
-      }
-
-    handleFieldsChange(e){
+    handleFieldsChange(e) {
         this.setState({
             [e.target.name]: e.target.value
         })
