@@ -22,7 +22,7 @@ export class Products extends React.Component {
 
 
         }
-
+        this.toExpenses = this.toExpenses.bind(this)
         this.toggleAlert = this.toggleAlert.bind(this)
         this.deleteProduct = this.deleteProduct.bind(this)
         this.toEditProduct = this.toEditProduct.bind(this)
@@ -108,6 +108,10 @@ export class Products extends React.Component {
                 })
             })
             .catch((err) => console.error(err));
+    }
+
+    toExpenses(){
+        this.props.history.push("/expenses")
     }
 
 
@@ -213,7 +217,7 @@ export class Products extends React.Component {
                 </div>
 
                 <div className="products-btns">
-                    <button className="product-btn">
+                    <button onClick={this.toExpenses} className="product-btn">
                         NEW CALCULATION
         </button>
 

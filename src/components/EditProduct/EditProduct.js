@@ -20,19 +20,37 @@ export class EditProduct extends React.Component {
     }
 
     
+    // editProduct(){
+    //     const access_token = localStorage.getItem('access_token')
+    //     Axios.patch('http://localhost:3000/editproduct/' + this.state.product._id , this.state.product, {
+    //         headers: {
+    //             access_token
+    //         }
+    //     })
+    //     .then( res => {
+            
+    //         this.props.history.push('/products')
+    //     })
+    //         .catch(err => console.log(err))
+
+    // }
+
     editProduct(){
         const access_token = localStorage.getItem('access_token')
-        Axios.patch('http://localhost:3000/edit/' + this.state.product._id , this.state.product, {
-            headers: {
-                access_token
-            }
+
+        Axios.patch('http://localhost:3000/editproduct/' + this.state.product._id , this.state.product, {
+            headers:{
+                'Authorization': `Bearer ${access_token}`,
+                'Access-Control-Allow-Origin': '*',
+                'mode': 'no-cors'
+              }
         })
         .then( res => {
             
             this.props.history.push('/products')
         })
             .catch(err => console.log(err))
-
+    
     }
 
     hanldeField(e) {
@@ -41,6 +59,7 @@ export class EditProduct extends React.Component {
             product: newEditProduct
         })
     }
+
 
     
 

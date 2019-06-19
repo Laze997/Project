@@ -80,12 +80,13 @@ export class Expenses extends React.Component {
 
 
     totalSum(){
-        var totalPrice = this.state.products.reduce(function (prev, cur) {
-            return prev + cur.price;
+        var totalPrice = this.state.products.reduce(function (prev, total) {
+            return prev + total.price;
         }, 0);
 
         return totalPrice
     }
+
     
     render() {
         return (
