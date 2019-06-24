@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment"
 
 
 import "./Expenses.css"
@@ -24,6 +25,8 @@ export class Expenses extends React.Component {
         this.totalSum = this.totalSum.bind(this)
         this.setYearly = this.setYearly.bind(this)
         this.setMonthly = this.setMonthly.bind(this)
+        this.yearlyFilter = this.yearlyFilter.bind(this)
+        this.monthlyFilter = this.monthlyFilter.bind(this)
 
     }
 
@@ -49,7 +52,8 @@ export class Expenses extends React.Component {
             return res.json();
           })
           .then(res => this.setState({
-              products : res
+              products : res,
+              allProducts: res
           }))
           .catch(err => {
             this.setState(state => {
@@ -87,6 +91,49 @@ export class Expenses extends React.Component {
         return totalPrice
     }
 
+
+    monthlyFilter(e) {
+        const month = e.target.value
+
+        if (month === "products") {
+            return this.setState({
+                products: this.state.allProducts
+            })
+        }
+
+        const filterProduct = this.state.allProducts.filter((product) => {
+            if (String(moment(product.date).month()) === month) {
+                return true;
+            }
+            return false;
+        })
+        this.setState({
+            products: filterProduct
+        })
+        console.log(filterProduct)
+    }
+
+    yearlyFilter(e) {
+        const year = e.target.value
+
+        if (year === "products") {
+            return this.setState({
+                products: this.state.allProducts
+            })
+        }
+
+        const filterProducts = this.state.allProducts.filter((product) => {
+            if (String(moment(product.date).years()) === year) {
+                return true;
+            }
+            return false;
+        })
+        this.setState({
+            products: filterProducts
+        })
+        console.log(filterProducts)
+    }
+
     
     render() {
         return (
@@ -101,24 +148,42 @@ export class Expenses extends React.Component {
                         <button  className={(this.state.selected === "monthly") ? "exp-btn1" : "exp-btn2"} onClick={this.setMonthly} >MONTHLY</button>
                         <button className={(this.state.selected === "yearly") ? "exp-btn1" : "exp-btn2"} onClick={this.setYearly} >YEARLY</button>
                     </div>
+
+                    {           
+                        this.state.selected === "monthly" ?
+
                     <div className="exp-div">
                         <p className="exp-filter">Choose a Month:</p>
-                        <select className="expense-opt">
-                            <option value=''>--Select Month--</option>
-                            <option defaultValue='1'>January</option>
-                            <option value='2'>February</option>
-                            <option value='3'>March</option>
-                            <option value='4'>April</option>
-                            <option value='5'>May</option>
-                            <option value='6'>June</option>
-                            <option value='7'>July</option>
-                            <option value='8'>August</option>
-                            <option value='9'>September</option>
-                            <option value='10'>October</option>
-                            <option value='11'>November</option>
-                            <option value='12'>December</option>
+                        <select onChange={this.monthlyFilter} className="expense-opt">
+                            <option value="products">Select a Month</option>
+                            <option value='0'>January</option>
+                            <option value='1'>February</option>
+                            <option value='2'>March</option>
+                            <option value='3'>April</option>
+                            <option value='4'>May</option>
+                            <option value='5'>June</option>
+                            <option value='6'>July</option>
+                            <option value='7'>August</option>
+                            <option value='8'>September</option>
+                            <option value='9'>October</option>
+                            <option value='10'>November</option>
+                            <option value='11'>December</option>
                         </select>
                     </div>
+                    :
+
+                    <div className="exp-div">
+                    <p className="exp-filter">Choose a Year:</p>
+                    <select onChange={this.monthlyFilter} className="expense-opt">
+                        <option value='products'>--Select Year--</option>
+                        <option value="0">2016</option>
+                        <option value='1'>2017</option>
+                        <option value='2'>2018</option>
+                        <option value='3'>2019</option>
+                        <option value='4'>2020</option>
+                    </select>
+                </div>
+                    }
 
                 </div>
 
