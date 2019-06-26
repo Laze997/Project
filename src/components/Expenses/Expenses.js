@@ -93,16 +93,10 @@ export class Expenses extends React.Component {
 
 
     monthlyFilter(e) {
-        const month = e.target.value
-
-        if (month === "products") {
-            return this.setState({
-                products: this.state.allProducts
-            })
-        }
+        let months = e.target.value
 
         const filterProduct = this.state.allProducts.filter((product) => {
-            if (String(moment(product.date).month()) === month) {
+            if (String(moment(product.date).month()) === months) {
                 return true;
             }
             return false;
@@ -110,20 +104,21 @@ export class Expenses extends React.Component {
         this.setState({
             products: filterProduct
         })
-        console.log(filterProduct)
-    }
 
-    yearlyFilter(e) {
-        const year = e.target.value
 
-        if (year === "products") {
+
+        if (months === "products") {
             return this.setState({
                 products: this.state.allProducts
             })
         }
+    }
+
+    yearlyFilter(e) {
+        let years = e.target.value
 
         const filterProducts = this.state.allProducts.filter((product) => {
-            if (String(moment(product.date).years()) === year) {
+            if (String(moment(product.date).years()) === years) {
                 return true;
             }
             return false;
@@ -131,7 +126,12 @@ export class Expenses extends React.Component {
         this.setState({
             products: filterProducts
         })
-        console.log(filterProducts)
+
+        if (years === "products") {
+            return this.setState({
+                products: this.state.allProducts
+            })
+        }
     }
 
     
@@ -174,13 +174,12 @@ export class Expenses extends React.Component {
 
                     <div className="exp-div">
                     <p className="exp-filter">Choose a Year:</p>
-                    <select onChange={this.monthlyFilter} className="expense-opt">
+                    <select onChange={this.yearlyFilter} className="expense-opt">
                         <option value='products'>--Select Year--</option>
-                        <option value="0">2016</option>
-                        <option value='1'>2017</option>
-                        <option value='2'>2018</option>
-                        <option value='3'>2019</option>
-                        <option value='4'>2020</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
                     </select>
                 </div>
                     }
