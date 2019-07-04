@@ -95,7 +95,7 @@ export class Expenses extends React.Component {
     monthlyFilter(e) {
         let months = e.target.value
 
-        const filterProduct = this.state.allProducts.filter((product) => {
+        let filterProduct = this.state.allProducts.filter((product) => {
             if (String(moment(product.date).month()) === months) {
                 return true;
             }
@@ -117,7 +117,7 @@ export class Expenses extends React.Component {
     yearlyFilter(e) {
         let years = e.target.value
 
-        const filterProducts = this.state.allProducts.filter((product) => {
+        let filterProducts = this.state.allProducts.filter((product) => {
             if (String(moment(product.date).years()) === years) {
                 return true;
             }
@@ -150,7 +150,9 @@ export class Expenses extends React.Component {
                     </div>
 
                     {           
-                        this.state.selected === "monthly" ?
+                        this.state.selected === "monthly" 
+                        
+                        ?
 
                     <div className="exp-div">
                         <p className="exp-filter">Choose a Month:</p>
@@ -170,6 +172,7 @@ export class Expenses extends React.Component {
                             <option value='11'>December</option>
                         </select>
                     </div>
+                    
                     :
 
                     <div className="exp-div">
@@ -209,7 +212,7 @@ export class Expenses extends React.Component {
                                                 <td>{product.productname}</td>
                                                 <td>{product.desc}</td>
                                                 <td>{product.type}</td>
-                                                <td>{product.date}</td>
+                                                <td>{moment(product.date).format('DD MMM YYYY')}</td>
                                                 <td>{product.price}</td>
                                         </tr>
                                         )

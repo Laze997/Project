@@ -1,5 +1,6 @@
 import React from "react";
-import "../NewProduct/NewProduct.css"
+import "../NewProduct/NewProduct.css";
+import moment from "moment";
 import Axios from 'axios';
 
 export class EditProduct extends React.Component {
@@ -18,22 +19,6 @@ export class EditProduct extends React.Component {
         this.editProduct = this.editProduct.bind(this);
         this.hanldeField = this.hanldeField.bind(this)
     }
-
-    
-    // editProduct(){
-    //     const access_token = localStorage.getItem('access_token')
-    //     Axios.patch('http://localhost:3000/editproduct/' + this.state.product._id , this.state.product, {
-    //         headers: {
-    //             access_token
-    //         }
-    //     })
-    //     .then( res => {
-            
-    //         this.props.history.push('/products')
-    //     })
-    //         .catch(err => console.log(err))
-
-    // }
 
     editProduct(){
         const access_token = localStorage.getItem('access_token')
@@ -82,7 +67,7 @@ export class EditProduct extends React.Component {
                         <label className="login-label" htmlFor="type">Product Type</label>
                         <input value={product.type} onChange={this.hanldeField}  type="text" name="type" className="login-input" />
                         <label className="login-label" htmlFor="date">Purchase Date</label>
-                        <input value={product.date} onChange={this.hanldeField}  type="date" name="date" className="login-input" />
+                        <input value={moment(product.date).format('DD MMM YYYY')} onChange={this.hanldeField}  type="date" name="date" className="login-input" />
                         <label className="login-label" htmlFor="price">Product Price</label>
                         <input value={product.price} onChange={this.hanldeField} type="number" name="price" className="login-input" />
                         <button onClick={this.editProduct} className="btn" type="submit">EDIT PRODUCT</button>

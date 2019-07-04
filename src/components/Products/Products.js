@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom"
 import "./Products.css"
 import Axios from "axios";
+import moment from "moment"
 
 
 export class Products extends React.Component {
@@ -201,7 +202,7 @@ export class Products extends React.Component {
                                         <td>{product.productname}</td>
                                         <td>{product.desc}</td>
                                         <td>{product.type}</td>
-                                        <td>{product.date}</td>
+                                        <td>{moment(product.date).format('DD MMM YYYY')}</td>
                                         <td>{product.price}</td>
                                         <td><button className="th-btn trash" onClick={() => this.toggleAlert(product._id)}></button>
                                             <button onClick={this.toEditProduct(product)} className="th-btn edit"></button>
