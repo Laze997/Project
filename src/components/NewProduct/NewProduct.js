@@ -45,24 +45,6 @@ export class NewProduct extends React.Component {
         })
     }
 
-    // newProduct() {
-    //     const access_token = localStorage.getItem('access_token')
-
-    //     Axios.post('http://localhost:3000/newproduct', this.state, {
-    //         // headers: {
-    //         //     access_token
-    //         // }
-    //     })
-    //     .then(res => {
-    //         access_token()
-    //         this.props.history.push('/products')
-    //     })
-    //         .catch(err => console.log(err))
-
-    // }
-
-
-
 
     render() {
         return (
