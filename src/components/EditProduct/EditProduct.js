@@ -67,7 +67,7 @@ export class EditProduct extends React.Component {
                         <label className="login-label" htmlFor="type">Product Type</label>
                         <input value={product.type} onChange={this.hanldeField}  type="text" name="type" className="login-input" />
                         <label className="login-label" htmlFor="date">Purchase Date</label>
-                        <input value={moment(product.date).format('DD MMM YYYY')} onChange={this.hanldeField}  type="date" name="date" className="login-input" />
+                        <input value={product.date} onChange={this.hanldeField}  type="date" name="date" className="login-input" />
                         <label className="login-label" htmlFor="price">Product Price</label>
                         <input value={product.price} onChange={this.hanldeField} type="number" name="price" className="login-input" />
                         <button onClick={this.editProduct} className="btn" type="submit">EDIT PRODUCT</button>
